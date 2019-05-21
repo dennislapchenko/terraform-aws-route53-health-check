@@ -2,6 +2,8 @@
 
 Terraform module which creates health check and alarm
 
+Available through the [Terraform registry](https://registry.terraform.io/modules/Nuagic/route53-health-check/aws).
+
 ## Usage
 
 ```hcl
@@ -11,7 +13,7 @@ resource "aws_sns_topic" "alarms" {
 }
 
 module "health_check-google" {
-  source            = "https://github.com/Nuagic/terraform-aws-route53-health-check"
+  source            = "Nuagic/route53-health-check/aws"
   fqdn              = "www.google.com"
   port              = 443
   type              = "HTTPS"
