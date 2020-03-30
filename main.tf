@@ -1,5 +1,4 @@
 resource "aws_route53_health_check" "check" {
-  provider          = "aws.us-east-1"
   fqdn              = "${var.fqdn}"
   port              = "${var.port}"
   type              = "${var.type}"
