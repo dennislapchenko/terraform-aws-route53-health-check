@@ -4,21 +4,54 @@ Terraform module which creates health check and alarm
 
 Available through the [Terraform registry](https://registry.terraform.io/modules/Nuagic/route53-health-check/aws).
 
+<<<<<<< HEAD
 ## Usage
+=======
+## Terraform versions
+
+Terraform 0.12. Pin module version to `~> v2.0`. Submit pull-requests to `master` branch.
+
+Terraform 0.11. Pin module version to `~> v1.0`. Submit pull-requests to `terraform011` branch.
+
+## Usage terraform 0.12
+>>>>>>> 217f1a7... Improve Readme
 
 ```hcl
 resource "aws_sns_topic" "alarms" {
-  name = "alarms"D
+  name = "alarms"
   display_name = "alarms"
 }
 
 module "health_check-google" {
+  version           = "2.0.1"
   source            = "Nuagic/route53-health-check/aws"
   fqdn              = "www.google.com"
   port              = 443
   type              = "HTTPS"
   resource_path     = "/"
-  failure_threshold = "5"U
+  failure_threshold = "5"
+  request_interval  = "30"
+  sns_topic         = aws_sns_topic.alarms.id
+  name              = "Google alarm"
+}
+```
+
+## Usage terraform 0.11
+
+```hcl
+resource "aws_sns_topic" "alarms" {
+  name = "alarms"
+  display_name = "alarms"
+}
+
+module "health_check-google" {
+  version           = "1.0.3"
+  source            = "Nuagic/route53-health-check/aws"
+  fqdn              = "www.google.com"
+  port              = 443
+  type              = "HTTPS"
+  resource_path     = "/"
+  failure_threshold = "5"
   request_interval  = "30"
   sns_topic         = "${aws_sns_topic.alarms.id}"
   name              = "Google alarm"
