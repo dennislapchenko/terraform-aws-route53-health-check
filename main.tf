@@ -1,13 +1,13 @@
 resource "aws_route53_health_check" "check" {
-  fqdn              = "${var.fqdn}"
-  port              = "${var.port}"
-  type              = "${var.type}"
-  resource_path     = "${var.resource_path}"
-  failure_threshold = "${var.failure_threshold}"
-  request_interval  = "${var.request_interval}"
+  fqdn              = var.fqdn
+  port              = var.port
+  type              = var.type
+  resource_path     = var.resource_path
+  failure_threshold = var.failure_threshold
+  request_interval  = var.request_interval
 
   tags = {
-    Name = "${var.name}"
+    Name = var.name
   }
 }
 
@@ -23,11 +23,11 @@ resource "aws_cloudwatch_metric_alarm" "alarm" {
   unit                = "None"
 
   dimensions = {
-    HealthCheckId = "${aws_route53_health_check.check.id}"
+    HealthCheckId = aws_route53_health_check.check.id
   }
 
   alarm_description         = "This metric monitors ${var.name} whether the service endpoint is down or not."
-  alarm_actions             = ["${var.sns_topic}"]
-  insufficient_data_actions = ["${var.sns_topic}"]
+  alarm_actions             = [var.sns_topic]
+  insufficient_data_actions = [var.sns_topic]
   treat_missing_data        = "breaching"
 }
