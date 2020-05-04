@@ -27,6 +27,7 @@ resource "aws_cloudwatch_metric_alarm" "alarm" {
   }
 
   alarm_description         = "This metric monitors ${var.name} whether the service endpoint is down or not."
+  ok_actions             = [var.sns_topic]
   alarm_actions             = [var.sns_topic]
   insufficient_data_actions = [var.sns_topic]
   treat_missing_data        = "breaching"
