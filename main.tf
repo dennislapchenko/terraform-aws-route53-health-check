@@ -12,7 +12,7 @@ resource "aws_route53_health_check" "check" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "alarm" {
-  alarm_name          = "${var.name}_healthcheck"
+  alarm_name          = "${var.name}"
   namespace           = "AWS/Route53"
   metric_name         = "HealthCheckStatus"
   comparison_operator = "LessThanThreshold"
