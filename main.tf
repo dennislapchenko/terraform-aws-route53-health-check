@@ -5,6 +5,7 @@ resource "aws_route53_health_check" "check" {
   resource_path     = var.resource_path
   failure_threshold = var.failure_threshold
   request_interval  = var.request_interval
+  search_string     = var.search_string
 
   tags = {
     Name = var.name
