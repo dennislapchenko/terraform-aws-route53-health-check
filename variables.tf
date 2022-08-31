@@ -15,6 +15,11 @@ variable "port" {
 
 variable "type" {
   description = "The protocol to use when performing health checks. Valid values are HTTP, HTTPS, HTTP_STR_MATCH, HTTPS_STR_MATCH, TCP, CALCULATED and CLOUDWATCH_METRIC"
+  default = "HTTPS"
+}
+
+variable "search_string" {
+  default = ""
 }
 
 variable "resource_path" {
